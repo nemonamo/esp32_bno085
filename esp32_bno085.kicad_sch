@@ -6419,7 +6419,7 @@
 				)
 			)
 		)
-		(property "Value" "LED_Orange"
+		(property "Value" "Orange"
 			(at 88.646 58.674 0)
 			(effects
 				(font
@@ -8197,7 +8197,7 @@
 				)
 			)
 		)
-		(property "Value" "LED_BLU"
+		(property "Value" "Blue"
 			(at 88.646 69.85 0)
 			(effects
 				(font
@@ -11527,8 +11527,8 @@
 			)
 		)
 	)
-	(global_label "BOOT"
-		(shape passive)
+	(global_label "GND"
+		(shape input)
 		(at 161.29 134.62 180)
 		(fields_autoplaced yes)
 		(effects
@@ -11549,8 +11549,8 @@
 			)
 		)
 	)
-	(global_label "GND"
-		(shape input)
+	(global_label "BOOT"
+		(shape passive)
 		(at 171.45 134.62 0)
 		(fields_autoplaced yes)
 		(effects

@@ -1,0 +1,17 @@
+(fp_lib_table
+	(version 7)
+	(lib
+		(name "530480210")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/530480210.pretty")
+		(options "")
+		(descr "Project-local Molex 530480210 connector footprint")
+	)
+	(lib
+		(name "BNO085")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/BNO085.pretty")
+		(options "")
+		(descr "Project-local BNO085 footprint")
+	)
+)
