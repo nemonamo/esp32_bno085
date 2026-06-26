@@ -1,0 +1,18 @@
+# KiCad local/editor state
+.history/
+*-backups/
+*.kicad_prl
+fp-info-cache
+
+# Generated fabrication and analysis outputs
+analysis/
+production/
+
+# Local backup snapshots
+*.bak
+*.tmp
+*.autosave
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
