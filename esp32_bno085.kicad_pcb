@@ -151,7 +151,7 @@
 				)
 			)
 		)
-		(property "Value" "0.1uf"
+		(property "Value" "0.1uF"
 			(at -0.25 0.75 0)
 			(layer "F.SilkS")
 			(hide yes)

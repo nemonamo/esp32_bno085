@@ -47,15 +47,21 @@ mouse bites, V-cut, or edge rails around the board.
 
 ## Via-In-Pad Note
 
-There is a via at/near the D2 pad area. For assembled boards, ask JLCPCB for
-epoxy-filled and capped or copper-filled and capped vias where needed, or
-review the solder-wicking risk in the assembly preview. JLCPCB notes that vias
-in pads cannot be plugged with ink and should use epoxy or copper filling when
-that finish is required.
+There is a via at/near the D2 pad area. The raw PCB marks that via as capped,
+covered, plugged, and filled on both sides. For assembled boards, confirm that
+the selected JLCPCB via process honors this, or choose epoxy-filled and capped
+or copper-filled and capped vias where needed. JLCPCB notes that vias in pads
+cannot be plugged with ink and should use epoxy or copper filling when that
+finish is required.
 
 ## BOM/CPL Handoff
 
-- BOM and CPL are intentionally not generated in this repository state.
+- Local, ignored-by-git JLCPCB outputs were regenerated under
+  `production/jlcpcb_20260713_post_c5/`: `gerbers.zip`,
+  `jlcpcb_bom.csv`, `jlcpcb_cpl_smd_only.csv`, and
+  `jlcpcb_cpl_all_components.csv`.
+- The normalized BOM has 23 rows. Seven rows have LCSC part numbers and 16 rows
+  remain blank until exact lab/JLCPCB part choices are finalized.
 - KiCad `MPN`, `Manufacturer`, and `LCSC` fields are populated for seven
   non-generic/order-critical lines: D1, J1, J2, Q1, U1, U3, and U4.
 - The exact ESP32-S3 module variant is still intentionally unset. Choose the

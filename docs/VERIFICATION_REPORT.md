@@ -25,7 +25,7 @@ completed.
 - Gerber/drill export and Gerber analyzer: 3 warnings.
 
 The final geometry/signal review outputs are under
-`analysis/review_20260713/final_fiducials/`.
+`analysis/review_20260713/final_post_c5/`.
 
 ## Critical Bring-Up Checks
 
@@ -151,14 +151,26 @@ Generic resistors, capacitors, LEDs, switches, and the 32.768 kHz crystal still
 need exact JLCPCB/LCSC selections for voltage rating, dielectric, tolerance,
 height, color/brightness, actuator, and load-capacitance details.
 
+Local, ignored-by-git JLCPCB export files were regenerated under
+`production/jlcpcb_20260713_post_c5/`:
+
+- `gerbers.zip`
+- `jlcpcb_bom.csv`
+- `jlcpcb_cpl_smd_only.csv`
+- `jlcpcb_cpl_all_components.csv`
+
+The normalized BOM expands reference ranges to comma-separated designators and
+has 23 rows. Seven rows currently have LCSC part numbers; 16 rows intentionally
+remain blank until exact lab/JLCPCB part choices are finalized.
+
 ## Remaining Issues Before Ordering
 
 | Item | Severity | Status |
 | --- | --- | --- |
-| BOM/LCSC/MPN coverage | Blocker for assembled order | Current schematic has 7/24 unique BOM lines with analyzer-recognized MPN and LCSC fields populated: D1, J1, J2, Q1, U1, U3, U4. The remaining 17 lines, mostly passives/LEDs/switches/crystal and the exact ESP32-S3 module variant, still need final JLCPCB/LCSC selections before assembled ordering. |
+| BOM/LCSC/MPN coverage | Blocker for assembled order | Current schematic exports to 23 JLCPCB BOM rows. Seven rows have analyzer-recognized MPN and LCSC fields populated: D1, J1, J2, Q1, U1, U3, U4. The remaining 16 rows, mostly passives/LEDs/switches/crystal and the exact ESP32-S3 module variant, still need final JLCPCB/LCSC selections before turnkey assembled ordering. |
 | CPL rotation preview | Blocker for assembled order | Must be checked in JLCPCB preview, especially USB-C, BNO085 LGA, SOT-23, SOT-23-5, SOIC-8, diodes, and LEDs. |
 | Standard PCBA handling | Order setup | Board is smaller than Standard PCBA handling size by itself. PCB-only top fiducials were added, but use JLCPCB panel/rails if required; do not alter outline. |
-| Via-in-pad / solder wicking | Order setup | Analyzer reports an untented via at/near D2 pad 1. Use JLCPCB via covering/filled-and-capped option where needed, or inspect the assembly preview carefully. |
+| Via-in-pad / solder wicking | Order setup | Analyzer reports D2 pad 1 as via-in-pad, but the raw PCB via is marked `capping`, `covering`, `plugging`, and `filling` on both sides. If JLCPCB does not honor those per-via attributes, select the filled/capped via option or inspect the assembly preview carefully. |
 | USB ESD/filtering | Robustness risk | No USB ESD array or reserved 22/33 ohm series resistor footprints. Espressif recommends reserving USB series resistors and optional capacitors near the chip. This is not a KiCad DRC failure. |
 | USB routing symmetry | Robustness risk | Cross-analysis reports USB D+/D- via/layer asymmetry. Full-speed USB is tolerant, but this remains an EMC/SI weakness. |
 | EMC score | Robustness risk | EMC analyzer score is 31/100, mostly from no USB filtering, 2-layer adjacent signal layers, USB layer changes, and edge-near sensitive nets. |
