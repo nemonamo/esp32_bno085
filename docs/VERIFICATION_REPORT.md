@@ -1,8 +1,8 @@
 # Verification Report
 
 Last checked: 2026-07-13  
-Design files checked: current working tree after `f988328` plus BOM metadata
-updates.
+Design files checked: current working tree after BOM metadata updates and
+PCB-only fiducial additions.
 
 This report is a current-state review, not a blanket guarantee. The board passes
 KiCad ERC/DRC, and the main power, USB boot, reset/boot button, and BNO085 mode
@@ -18,15 +18,14 @@ completed.
 - KiCad DRC with all project-ignored checks temporarily enabled:
   32 `lib_footprint_mismatch` warnings only.
 - Schematic analyzer: 30 findings.
-- PCB analyzer with full coordinate/proximity data: 58 findings.
+- PCB analyzer with full coordinate/proximity data: 57 findings.
 - Schematic/PCB cross-analysis: 1 finding.
 - EMC analyzer: 20 findings, score 31/100.
 - Thermal analyzer at 40 C ambient: 0 findings, score 100/100.
 - Gerber/drill export and Gerber analyzer: 3 warnings.
 
-The full geometry/signal review outputs are under
-`analysis/review_20260713/cd2680e/`. The later BOM metadata/parity refresh is
-under `analysis/review_20260713/mpn_lcsc_fields/`.
+The final geometry/signal review outputs are under
+`analysis/review_20260713/final_fiducials/`.
 
 ## Critical Bring-Up Checks
 
@@ -114,9 +113,9 @@ Current board geometry against JLCPCB published limits:
 - The board has SMD components on both F.Cu and B.Cu. Use Standard PCBA for
   double-sided assembly, or move assembled parts to one side before Economic
   PCBA.
-- Standard PCBA requires handling/fiducials, but JLCPCB's assembly FAQ says
-  they can add fiducial marks for SMT assembly. Prefer panel/rail fiducials
-  instead of changing this compact board outline.
+- Three PCB-only top-side fiducials (`FID1`-`FID3`) have been added without
+  changing the board outline or BOM. For Standard PCBA handling, still use
+  panel/rail support if JLCPCB requires it.
 
 Relevant JLCPCB references:
 
@@ -139,7 +138,7 @@ preview.
 
 | Ref | Current value | Candidate part | JLCPCB/LCSC # | Notes |
 | --- | --- | --- | --- | --- |
-| U3 | BNO085 | CEVA BNO085 | C5189642 | JLCPCB lists this as Extended, SMT Assembly, Standard Only, MSL 1, X-ray required. LCSC currently reports the same part as out of stock. Pre-order/availability must be checked before assembly. |
+| U3 | BNO085 | CEVA BNO085 | C5189642 | JLCPCB lists this as Extended, SMT Assembly, Standard Only, MSL 1, X-ray required. Stock verification is intentionally skipped per user because lab inventory covers the parts; re-check availability only if using JLC-sourced turnkey PCBA. |
 | U1 | TP4056-42-ESOP8 | TOPPOWER TP4056-42-ESOP8 | C16581 | JLCPCB lists ESOP-8, SMT Assembly, Economic and Standard, MSL 3. |
 | J2 | USB_C_Receptacle_USB2.0_16P | TYPE-C-31-M-12 | C165948 | JLCPCB lists 16P right-angle Type-C, SMT Assembly, Economic and Standard, MSL 1. |
 | Q1 | AO3401A | Alpha & Omega Semicon AO3401A | C15127 | JLCPCB lists SOT-23, P-channel, Economic and Standard PCBA. This matches the existing AOS datasheet better than generic AO3401A alternates. |
@@ -158,14 +157,14 @@ height, color/brightness, actuator, and load-capacitance details.
 | --- | --- | --- |
 | BOM/LCSC/MPN coverage | Blocker for assembled order | Current schematic has 7/24 unique BOM lines with analyzer-recognized MPN and LCSC fields populated: D1, J1, J2, Q1, U1, U3, U4. The remaining 17 lines, mostly passives/LEDs/switches/crystal and the exact ESP32-S3 module variant, still need final JLCPCB/LCSC selections before assembled ordering. |
 | CPL rotation preview | Blocker for assembled order | Must be checked in JLCPCB preview, especially USB-C, BNO085 LGA, SOT-23, SOT-23-5, SOIC-8, diodes, and LEDs. |
-| Standard PCBA handling | Order setup | Board is smaller than Standard PCBA handling size by itself. Use JLCPCB panel/rails; do not alter outline. |
+| Standard PCBA handling | Order setup | Board is smaller than Standard PCBA handling size by itself. PCB-only top fiducials were added, but use JLCPCB panel/rails if required; do not alter outline. |
 | Via-in-pad / solder wicking | Order setup | Analyzer reports an untented via at/near D2 pad 1. Use JLCPCB via covering/filled-and-capped option where needed, or inspect the assembly preview carefully. |
 | USB ESD/filtering | Robustness risk | No USB ESD array or reserved 22/33 ohm series resistor footprints. Espressif recommends reserving USB series resistors and optional capacitors near the chip. This is not a KiCad DRC failure. |
 | USB routing symmetry | Robustness risk | Cross-analysis reports USB D+/D- via/layer asymmetry. Full-speed USB is tolerant, but this remains an EMC/SI weakness. |
 | EMC score | Robustness risk | EMC analyzer score is 31/100, mostly from no USB filtering, 2-layer adjacent signal layers, USB layer changes, and edge-near sensitive nets. |
 | Physical bring-up | Not tested | No measurement evidence yet. Check USB VBUS, `VSYS`, `+3.3V`, `ESP_EN`, and USB D+/D- continuity on a real board. |
 | SPICE simulation | Not run | No SPICE simulator was installed in this environment. |
-| Lifecycle audit | Partial only | MPN/LCSC fields are now populated for 7/24 unique BOM lines. Full lifecycle/stock audit still cannot prove assembled-order readiness until all remaining BOM lines are populated. |
+| Lifecycle / stock audit | Skipped by user scope | Stock verification is not required because lab inventory covers the parts. Remaining BOM work is part identity, package fit, assembly method, and CPL rotation/origin review, not availability. |
 
 ## Analyzer False Positives or Non-Blockers
 
@@ -178,8 +177,8 @@ height, color/brightness, actuator, and load-capacitance details.
   failures. Raw ERC testing shows those rails already have PWR_FLAG source
   declarations; duplicating them causes an ERC error.
 - `PM-002` on J1/J2 edge distance is expected for edge/overhanging connectors.
-- `FD-001` no fiducials is a JLCPCB assembly setup issue, not an electrical
-  failure. Use panel/rail fiducials if needed.
+- The earlier `FD-001` no-fiducials assembly warning is resolved by PCB-only
+  `FID1`-`FID3`. These footprints are excluded from BOM and position files.
 - Gerber paste-to-copper ratio warnings are expected because paste layers only
   contain SMD paste apertures, not all copper features.
 

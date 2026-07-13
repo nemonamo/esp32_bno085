@@ -29,10 +29,9 @@ mouse bites, V-cut, or edge rails around the board.
   assembly, or move the assembled parts to one side before using Economic PCBA.
 - Standard PCBA currently has a 70 mm x 70 mm minimum single-PCB/panel handling
   size. Keep the board outline unchanged and use a panel/rails if required.
-- JLCPCB marks fiducials as necessary for Standard PCBA, but their assembly FAQ
-  says customers do not have to add fiducial marks themselves because JLCPCB can
-  add them for SMT assembly. Prefer panel/rail fiducials over forcing them into
-  this compact board.
+- PCB-only top-side fiducials `FID1`-`FID3` have been added and are excluded
+  from BOM and position files. For double-sided Standard PCBA, still review
+  JLCPCB's panel/rail/fiducial handling during upload.
 
 ## Geometry Notes
 
@@ -68,8 +67,9 @@ that finish is required.
 - Before ordering assembly, fill exact LCSC part numbers and verify all part
   rotations in the JLCPCB preview, especially USB-C, SOT-23/SOT-23-5, SOIC-8,
   LEDs, and diodes.
-- U3 BNO085 has a BOM note because the LCSC page showed it out of stock on
-  2026-07-13. Verify JLCPCB availability or pre-order status before PCBA.
+- Stock verification is intentionally skipped per user because lab inventory
+  covers the parts. If JLCPCB turnkey assembly will source parts from JLC/LCSC
+  inventory instead of lab/consigned parts, re-check availability before upload.
 - J1 is a through-hole battery header. Confirm Standard PCBA support for that
   line or plan to hand-solder/consign it.
 - The current design does not include a USB ESD/EMC filter near J2. This does

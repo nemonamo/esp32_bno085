@@ -10457,7 +10457,7 @@
 				(hide yes)
 			)
 		)
-		(property "BOM Comments" "LCSC page showed this part out of stock on 2026-07-13; verify JLCPCB pre-order/availability before PCBA."
+		(property "BOM Comments" "Lab inventory available per user; stock verification intentionally skipped. If using JLC-sourced turnkey PCBA, re-check C5189642 availability."
 			(at 200.66 102.87 0)
 			(effects
 				(font
