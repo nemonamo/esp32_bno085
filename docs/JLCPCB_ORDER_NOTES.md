@@ -1,0 +1,62 @@
+# JLCPCB Order Notes
+
+Last checked: 2026-07-13
+
+This board keeps the existing outline. Do not enlarge the PCB only to satisfy
+assembly handling requirements. If JLCPCB asks for handling area, use a panel,
+mouse bites, V-cut, or edge rails around the board.
+
+## Current KiCad Checks
+
+- KiCad 10 ERC: 0 violations.
+- KiCad 10 PCB DRC with schematic parity: 0 violations, 0 unconnected items,
+  0 schematic parity issues.
+- Board outline from the PCB file is about 24.5 mm x 53.4 mm.
+
+## JLCPCB Assembly Constraints
+
+- The PCB has SMD components on both F.Cu and B.Cu.
+- Economic PCBA is single-sided placement. Use Standard PCBA for double-sided
+  assembly, or move the assembled parts to one side before using Economic PCBA.
+- Standard PCBA currently has a 70 mm x 70 mm minimum single-PCB/panel handling
+  size. Keep the board outline unchanged and use a panel/rails if required.
+- JLCPCB marks fiducials as necessary for Standard PCBA, but their assembly FAQ
+  says customers do not have to add fiducial marks themselves because JLCPCB can
+  add them for SMT assembly. Prefer panel/rail fiducials over forcing them into
+  this compact board.
+
+## Geometry Notes
+
+- Current project rules use 0.1016 mm minimum track width/clearance.
+- JLCPCB's current 1 oz 1/2-layer capability lists 0.10 mm / 0.10 mm minimum
+  track width/spacing, so the 0.1016 mm routes are inside that published limit.
+- Current default vias are 0.5 mm diameter / 0.3 mm drill. JLCPCB lists
+  0.25 mm diameter / 0.15 mm hole as the minimum via capability, with 0.2 mm
+  hole preferred, so these vias are not the limiting geometry.
+- The USB-C and battery connector footprints intentionally extend to the board
+  edge. Some generic DFM analyzers report this as an edge-clearance error, but
+  it is not a KiCad DRC violation.
+
+## Via-In-Pad Note
+
+There is a via at/near the D2 pad area. For assembled boards, ask JLCPCB for
+epoxy-filled and capped or copper-filled and capped vias where needed, or
+review the solder-wicking risk in the assembly preview. JLCPCB notes that vias
+in pads cannot be plugged with ink and should use epoxy or copper filling when
+that finish is required.
+
+## BOM/CPL Handoff
+
+- BOM and CPL are intentionally not generated in this repository state.
+- Before ordering assembly, fill exact LCSC part numbers and verify all part
+  rotations in the JLCPCB preview, especially USB-C, SOT-23/SOT-23-5, SOIC-8,
+  LEDs, and diodes.
+- The current design does not include a USB ESD/EMC filter near J2. This does
+  not fail KiCad DRC, but it is still a robustness/EMC tradeoff for production.
+
+## Official References
+
+- PCB capabilities: https://jlcpcb.com/capabilities/pcb-capabilities
+- PCBA capabilities: https://jlcpcb.com/capabilities/pcb-assembly-capabilities
+- Assembly FAQ: https://jlcpcb.com/help/article/pcb-assembly-faqs
+- Via covering: https://jlcpcb.com/help/article/pcb-via-covering

@@ -7021,7 +7021,7 @@
 			(size 0.6 0.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net "Net-(D1-K)")
+			(net "VSYS")
 			(pinfunction "K")
 			(pintype "passive")
 			(uuid "0e983ffd-3b59-4808-8342-ca60541c30ae")
@@ -7610,7 +7610,7 @@
 			(size 1.475 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net "Net-(D1-K)")
+			(net "VSYS")
 			(pinfunction "D")
 			(pintype "passive")
 			(uuid "f4eb2a8a-8d81-48cf-aa7f-045a30ec1dcc")
@@ -8824,7 +8824,7 @@
 			(size 1.325 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "Net-(D1-K)")
+			(net "VSYS")
 			(pinfunction "VIN")
 			(pintype "power_in")
 			(uuid "f3ae0648-0cd8-46c3-ad3a-6bcc1b898527")
@@ -8844,7 +8844,7 @@
 			(size 1.325 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "Net-(D1-K)")
+			(net "VSYS")
 			(pinfunction "CE")
 			(pintype "input")
 			(uuid "b4fbeeb7-c1fe-4ec4-9545-6cd4c0e9ed02")
@@ -9566,7 +9566,7 @@
 			(size 0.735 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "Net-(D1-K)")
+			(net "VSYS")
 			(pintype "passive")
 			(uuid "9d80c41a-bfda-4507-8dd2-bb8afafa29d1")
 		)
@@ -13395,7 +13395,7 @@
 		(end 120.5585 83.202406)
 		(width 0.101702)
 		(layer "F.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "1dcd2348-be51-46ae-82eb-d082278f10c6")
 	)
 	(segment
@@ -13403,7 +13403,7 @@
 		(end 120.410842 83.202406)
 		(width 0.101702)
 		(layer "F.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "27d4c6ab-e5be-4355-8330-34650b9622d7")
 	)
 	(segment
@@ -13411,7 +13411,7 @@
 		(end 118.972163 81.085594)
 		(width 0.101702)
 		(layer "F.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "72790f2f-34d5-4b2b-8ebd-167545362742")
 	)
 	(segment
@@ -13419,7 +13419,7 @@
 		(end 120.298946 83.09051)
 		(width 0.101702)
 		(layer "F.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "8e5f2510-21a2-4bb5-a762-c8776128e75a")
 	)
 	(segment
@@ -13427,7 +13427,7 @@
 		(end 120.5585 83.583)
 		(width 0.101702)
 		(layer "F.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "b0eb737a-0067-4b8b-b5f9-c52cab7e0165")
 	)
 	(segment
@@ -13435,7 +13435,7 @@
 		(end 119.2665 81.085594)
 		(width 0.101702)
 		(layer "F.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "d924c51c-e9c4-47e3-8e7c-5a7c7aecbdf4")
 	)
 	(segment
@@ -13443,7 +13443,7 @@
 		(end 119.2665 80.63)
 		(width 0.101702)
 		(layer "F.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "f4fba20a-8718-417c-a46b-5441019c9a68")
 	)
 	(via
@@ -13461,7 +13461,7 @@
 			(back no)
 		)
 		(filling no)
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "0a316524-3881-4d23-b1b9-14eeae949378")
 	)
 	(via
@@ -13479,7 +13479,7 @@
 			(back no)
 		)
 		(filling no)
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "4c8672c7-fd82-4268-a3fb-8c9c7338e45a")
 	)
 	(segment
@@ -13487,7 +13487,7 @@
 		(end 119.474222 80.4275)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "0c8ca09d-cb78-4ba4-bcd7-f65bcb8406e6")
 	)
 	(segment
@@ -13495,7 +13495,7 @@
 		(end 119.84248 81.292076)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "130d4dc6-b530-4267-89a6-5749de1d28a6")
 	)
 	(segment
@@ -13503,7 +13503,7 @@
 		(end 118.981 80.4275)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "314b7bd6-237b-4028-8667-bd0e3881bc64")
 	)
 	(segment
@@ -13511,7 +13511,7 @@
 		(end 120.298946 81.748541)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "35d03c2f-6b54-4ff4-abf3-7055ef656775")
 	)
 	(segment
@@ -13519,7 +13519,7 @@
 		(end 118.087406 80.8655)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "3c64285e-d750-468f-acb2-501864cca3ce")
 	)
 	(segment
@@ -13527,7 +13527,7 @@
 		(end 118.737833 81.319924)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "62a96cc4-cf83-4c8c-bdc3-16bacfba5035")
 	)
 	(segment
@@ -13535,7 +13535,7 @@
 		(end 120.223609 81.673205)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "62b7cc5e-f7cd-45ec-9906-54cfe9472421")
 	)
 	(segment
@@ -13543,7 +13543,7 @@
 		(end 120.881 80.4275)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "6384c463-480f-41e1-a86a-b7acad795435")
 	)
 	(segment
@@ -13551,7 +13551,7 @@
 		(end 120.881 81.245594)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "7872307a-f376-47e5-a10d-2f8bb3a60007")
 	)
 	(segment
@@ -13559,7 +13559,7 @@
 		(end 120.298946 82.791564)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "830b7a99-9994-493d-ba56-bf0dfb9fee2a")
 	)
 	(segment
@@ -13567,7 +13567,7 @@
 		(end 119.474222 81.292076)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "8c518aae-ba26-4af5-9700-46681244273c")
 	)
 	(segment
@@ -13575,7 +13575,7 @@
 		(end 120.65122 81.245594)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "9ab08cd0-bdaf-43f9-86b2-6317f85fb38d")
 	)
 	(segment
@@ -13583,7 +13583,7 @@
 		(end 118.981 80.4275)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "c212edb9-f9d8-45c6-9235-5786a593b861")
 	)
 	(segment
@@ -13591,7 +13591,7 @@
 		(end 118.981 81.245594)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "ce031a92-ff3e-4c23-81f1-61d360621658")
 	)
 	(segment
@@ -13599,7 +13599,7 @@
 		(end 118.525406 80.4275)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "ce9a62c6-d607-4d1d-bd59-671a4115d7e1")
 	)
 	(segment
@@ -13607,7 +13607,7 @@
 		(end 118.90667 81.319924)
 		(width 0.101702)
 		(layer "B.Cu")
-		(net "Net-(D1-K)")
+		(net "VSYS")
 		(uuid "d8744f81-db15-47e1-9177-9c1583cf292f")
 	)
 	(zone

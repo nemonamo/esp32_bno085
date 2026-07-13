@@ -6013,6 +6013,28 @@
 			)
 		)
 	)
+	(global_label "VSYS"
+		(shape passive)
+		(at 113.03 170.18 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5c89a873-8c43-48de-8e8f-49b860ccdb01")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 121.03 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(symbol
 		(lib_id "power:GND")
 		(at 107.95 80.01 0)
