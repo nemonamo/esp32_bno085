@@ -1,7 +1,7 @@
 # Verification Report
 
 Last checked: 2026-07-13  
-Commit checked: `34df731`
+Design files checked: `cd2680e`
 
 This report is a current-state review, not a blanket guarantee. The board passes
 KiCad ERC/DRC, and the main power, USB boot, reset/boot button, and BNO085 mode
@@ -23,7 +23,7 @@ completed.
 - Thermal analyzer at 40 C ambient: 0 findings, score 100/100.
 - Gerber/drill export and Gerber analyzer: 3 warnings.
 
-Generated outputs are under `analysis/review_20260713/34df731/`.
+Generated outputs are under `analysis/review_20260713/cd2680e/`.
 
 ## Critical Bring-Up Checks
 
@@ -126,11 +126,31 @@ Relevant JLCPCB references:
 - Via covering:
   https://jlcpcb.com/help/article/pcb-via-covering
 
+## Candidate JLCPCB/LCSC Matches
+
+These are search results for known, non-generic parts. They are not a generated
+BOM/CPL and should still be verified in the JLCPCB upload and placement preview.
+
+| Ref | Current value | Candidate part | JLCPCB/LCSC # | Notes |
+| --- | --- | --- | --- | --- |
+| U3 | BNO085 | CEVA BNO085 | C5189642 | JLCPCB lists this as Extended, SMT Assembly, Standard Only, MSL 1, X-ray required. LCSC currently reports the same part as out of stock. Pre-order/availability must be checked before assembly. |
+| U1 | TP4056-42-ESOP8 | TOPPOWER TP4056-42-ESOP8 | C16581 | JLCPCB lists ESOP-8, SMT Assembly, Economic and Standard, MSL 3. |
+| J2 | USB_C_Receptacle_USB2.0_16P | TYPE-C-31-M-12 | C165948 | JLCPCB lists 16P right-angle Type-C, SMT Assembly, Economic and Standard, MSL 1. |
+| Q1 | AO3401A | AO3401A-compatible P-channel MOSFET | C347476 | JLCPCB listing is UMW AO3401A, SOT-23, P-channel. Verify manufacturer/pinout/electrical equivalence against the intended AO3401A. |
+| U4 | XC6220B331MR | Torex XC6220B331MR-G | C86534 | JLCPCB lists the Torex `-G` variant. Verify suffix/temperature/package before entering this in BOM. |
+| D1 | BAT760 | DIODES BAT760-7 | C124187 | LCSC lists SOD-323, 30 V, 1 A. Verify package and polarity against the footprint. |
+| J1 | 530480210 | Molex 530480210 | C505099 | LCSC lists the 2-pin right-angle PicoBlade header. Confirm JLCPCB PCBA support or plan manual/consigned assembly. |
+| U2 | ESP32-S3-WROOM-1 | Not fixed yet | - | Search results include specific flash/PSRAM variants such as `ESP32-S3-WROOM-1-N16R8`; the current schematic value does not specify the exact module variant, so do not auto-fill it. |
+
+Generic resistors, capacitors, LEDs, switches, and the 32.768 kHz crystal still
+need exact JLCPCB/LCSC selections for voltage rating, dielectric, tolerance,
+height, color/brightness, actuator, and load-capacitance details.
+
 ## Remaining Issues Before Ordering
 
 | Item | Severity | Status |
 | --- | --- | --- |
-| BOM/LCSC/MPN coverage | Blocker for assembled order | Current schematic has 0/24 unique BOM parts with MPN fields populated. User-owned BOM/CPL step must fill exact JLCPCB/LCSC parts. |
+| BOM/LCSC/MPN coverage | Blocker for assembled order | Current schematic has 0/24 unique BOM parts with analyzer-recognized MPN fields populated. Candidate matches above reduce search work, but the user-owned BOM/CPL step must fill and verify exact JLCPCB/LCSC parts. |
 | CPL rotation preview | Blocker for assembled order | Must be checked in JLCPCB preview, especially USB-C, BNO085 LGA, SOT-23, SOT-23-5, SOIC-8, diodes, and LEDs. |
 | Standard PCBA handling | Order setup | Board is smaller than Standard PCBA handling size by itself. Use JLCPCB panel/rails; do not alter outline. |
 | Via-in-pad / solder wicking | Order setup | Analyzer reports an untented via at/near D2 pad 1. Use JLCPCB via covering/filled-and-capped option where needed, or inspect the assembly preview carefully. |
