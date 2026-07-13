@@ -11,6 +11,13 @@ mouse bites, V-cut, or edge rails around the board.
 - KiCad 10 ERC: 0 violations.
 - KiCad 10 PCB DRC with schematic parity: 0 violations, 0 unconnected items,
   0 schematic parity issues.
+- If every project-ignored PCB check is temporarily enabled, the remaining
+  warnings are footprint-library comparison warnings (`lib_footprint_mismatch`).
+  They indicate that the board-embedded footprint copies differ from the
+  currently installed KiCad library versions. They are not clearance,
+  unconnected-net, or schematic-parity failures.
+- R10/R11 now include B.CrtYd courtyard outlines, so they no longer trigger
+  `missing_courtyard` when that normally ignored check is enabled.
 - Board outline from the PCB file is about 24.5 mm x 53.4 mm.
 
 ## JLCPCB Assembly Constraints

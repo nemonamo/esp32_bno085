@@ -8946,6 +8946,46 @@
 		(sheetfile "esp32_bno085.kicad_sch")
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -1.11 0.47)
+			(end -1.11 -0.47)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "db6c110c-7072-4f8a-aeb0-bda2492363cc")
+		)
+		(fp_line
+			(start 1.11 0.47)
+			(end -1.11 0.47)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "efdfbd5d-d26f-41ec-ac83-8b76688345f0")
+		)
+		(fp_line
+			(start -1.11 -0.47)
+			(end 1.11 -0.47)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "8e0802b8-a13c-4b6f-b597-7981f78c9936")
+		)
+		(fp_line
+			(start 1.11 -0.47)
+			(end 1.11 0.47)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "8e39dbba-829c-4ef0-bd66-b63696280854")
+		)
 		(pad "1" smd roundrect
 			(at -0.5975 0 180)
 			(size 0.715 0.64)
@@ -9656,6 +9696,46 @@
 		(sheetfile "esp32_bno085.kicad_sch")
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -1.11 0.47)
+			(end -1.11 -0.47)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "2341ee5f-6806-4e42-a560-9ee1d3e58e85")
+		)
+		(fp_line
+			(start 1.11 0.47)
+			(end -1.11 0.47)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "7a08a3bc-471e-4ee2-9b36-d98db182bd00")
+		)
+		(fp_line
+			(start -1.11 -0.47)
+			(end 1.11 -0.47)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "74318feb-c55b-4f4f-9358-6ff2eb020502")
+		)
+		(fp_line
+			(start 1.11 -0.47)
+			(end 1.11 0.47)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "034a0026-43d9-471d-bde1-10f6f4561b95")
+		)
 		(pad "1" smd roundrect
 			(at -0.5975 0 180)
 			(size 0.715 0.64)
