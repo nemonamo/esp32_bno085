@@ -2,6 +2,8 @@
 
 Last checked: 2026-07-13
 
+Detailed current-state review: [`VERIFICATION_REPORT.md`](VERIFICATION_REPORT.md)
+
 This board keeps the existing outline. Do not enlarge the PCB only to satisfy
 assembly handling requirements. If JLCPCB asks for handling area, use a panel,
 mouse bites, V-cut, or edge rails around the board.
