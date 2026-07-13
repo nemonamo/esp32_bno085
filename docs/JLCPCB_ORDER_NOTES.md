@@ -21,6 +21,9 @@ mouse bites, V-cut, or edge rails around the board.
 - R10/R11 now include B.CrtYd courtyard outlines, so they no longer trigger
   `missing_courtyard` when that normally ignored check is enabled.
 - Board outline from the PCB file is about 24.5 mm x 53.4 mm.
+- Q1 power-path orientation has been corrected: Q1 gate is on `+5V`, source is
+  on `VSYS`, and drain is on `BAT`. This blocks USB-powered `VSYS` from
+  backfeeding the battery through the P-MOSFET body diode.
 
 ## JLCPCB Assembly Constraints
 
@@ -44,6 +47,10 @@ mouse bites, V-cut, or edge rails around the board.
 - The USB-C and battery connector footprints intentionally extend to the board
   edge. Some generic DFM analyzers report this as an edge-clearance error, but
   it is not a KiCad DRC violation.
+- Gerber analyzer layer-extent warnings are expected here because copper,
+  paste, mask, drill, and edge layers naturally occupy different areas of the
+  board. KiCad's generated job file reports the complete 24.7 mm x 53.6 mm
+  board and all expected Gerber/drill layers are present.
 
 ## Via-In-Pad Note
 
@@ -57,7 +64,7 @@ finish is required.
 ## BOM/CPL Handoff
 
 - Local, ignored-by-git JLCPCB outputs were regenerated under
-  `production/jlcpcb_20260713_post_c5/`: `gerbers.zip`,
+  `production/jlcpcb_20260713_q1_fix/`: `gerbers.zip`,
   `jlcpcb_bom.csv`, `jlcpcb_cpl_smd_only.csv`, and
   `jlcpcb_cpl_all_components.csv`.
 - The normalized BOM has 23 rows. Seven rows have LCSC part numbers and 16 rows

@@ -5179,16 +5179,6 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 147.32) (xy 121.92 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8314bc9a-edd9-4bee-8804-a37c865b4ade")
-	)
-	(wire
-		(pts
 			(xy 110.49 44.45) (xy 110.49 46.99)
 		)
 		(stroke
@@ -5386,16 +5376,6 @@
 			(type default)
 		)
 		(uuid "bb8c6600-8211-460a-a280-e5c4ccd01088")
-	)
-	(wire
-		(pts
-			(xy 121.92 158.75) (xy 95.25 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "be3e8673-437c-4008-8ef2-60fbdfd8b5ff")
 	)
 	(wire
 		(pts
@@ -6021,8 +6001,8 @@
 			)
 		)
 	)
-	(global_label "BAT"
-		(shape input)
+	(global_label "VSYS"
+		(shape passive)
 		(at 111.76 147.32 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6033,12 +6013,34 @@
 		)
 		(uuid "f5a0b958-39e5-46ea-8045-fb01740cb0b1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 102.3039 147.32 0)
+			(at 101.0936 147.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "BAT"
+		(shape passive)
+		(at 121.92 147.32 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5397526a-7e17-4d01-aa21-525476d81cfa")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 128.2314 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)

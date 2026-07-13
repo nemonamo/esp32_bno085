@@ -1,8 +1,8 @@
 # Verification Report
 
 Last checked: 2026-07-13  
-Design files checked: current working tree after BOM metadata updates and
-PCB-only fiducial additions.
+Design files checked: current working tree after BOM metadata updates,
+PCB-only fiducial additions, and the Q1 power-path orientation fix.
 
 This report is a current-state review, not a blanket guarantee. The board passes
 KiCad ERC/DRC, and the main power, USB boot, reset/boot button, and BNO085 mode
@@ -18,14 +18,14 @@ completed.
 - KiCad DRC with all project-ignored checks temporarily enabled:
   32 `lib_footprint_mismatch` warnings only.
 - Schematic analyzer: 30 findings.
-- PCB analyzer with full coordinate/proximity data: 57 findings.
+- PCB analyzer with full coordinate/proximity data: 58 findings.
 - Schematic/PCB cross-analysis: 1 finding.
 - EMC analyzer: 20 findings, score 31/100.
 - Thermal analyzer at 40 C ambient: 0 findings, score 100/100.
 - Gerber/drill export and Gerber analyzer: 3 warnings.
 
 The final geometry/signal review outputs are under
-`analysis/review_20260713/final_post_c5/`.
+`analysis/review_20260713/q1_powerpath_fix/`.
 
 ## Critical Bring-Up Checks
 
@@ -56,16 +56,17 @@ Relevant Espressif references:
 - USB `+5V` feeds `VSYS` through D1.
 - Battery connector J1 pin 1 feeds `BAT`.
 - Battery charger U1 BAT pin is on `BAT`.
-- P-channel MOSFET Q1 uses pin 1 gate on `+5V`, pin 2 source on `BAT`,
-  and pin 3 drain on `VSYS`.
+- P-channel MOSFET Q1 uses pin 1 gate on `+5V`, pin 2 source on `VSYS`,
+  and pin 3 drain on `BAT`.
 - R3 pulls the `+5V`/Q1-gate node to GND when USB is absent, enabling battery
   power to `VSYS`.
 - U4 XC6220B331MR has VIN and CE on `VSYS`, GND on GND, and VOUT on `+3.3V`.
 
 Conclusion: The schematic/PCB power path is coherent for USB-powered `VSYS`
-and battery-powered `VSYS`. A board that does not power up should be checked
-physically at these points in order: USB VBUS, `VSYS`, U4 VOUT `+3.3V`,
-ESP32 `EN`.
+and battery-powered `VSYS`. The earlier Q1 orientation would have allowed
+USB-powered `VSYS` to backfeed `BAT` through the P-MOSFET body diode; that has
+been corrected. A board that does not power up should be checked physically at
+these points in order: USB VBUS, `VSYS`, U4 VOUT `+3.3V`, ESP32 `EN`.
 
 KiCad ERC also confirms the power source declarations are valid. The existing
 PWR_FLAG symbols on the `+5V` and `VSYS` rails are sufficient; adding duplicate
@@ -152,7 +153,7 @@ need exact JLCPCB/LCSC selections for voltage rating, dielectric, tolerance,
 height, color/brightness, actuator, and load-capacitance details.
 
 Local, ignored-by-git JLCPCB export files were regenerated under
-`production/jlcpcb_20260713_post_c5/`:
+`production/jlcpcb_20260713_q1_fix/`:
 
 - `gerbers.zip`
 - `jlcpcb_bom.csv`
@@ -193,6 +194,11 @@ remain blank until exact lab/JLCPCB part choices are finalized.
   `FID1`-`FID3`. These footprints are excluded from BOM and position files.
 - Gerber paste-to-copper ratio warnings are expected because paste layers only
   contain SMD paste apertures, not all copper features.
+- Gerber layer-extent alignment warnings are also a heuristic false positive:
+  copper, soldermask, paste, drill, silkscreen, and `Edge.Cuts` extents are not
+  supposed to have identical occupied bounding boxes on this board. The Gerber
+  job file still reports the complete 24.7 mm x 53.6 mm board and all expected
+  layers are present.
 
 ## Practical Bring-Up Checklist
 
