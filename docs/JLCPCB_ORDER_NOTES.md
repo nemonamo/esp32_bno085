@@ -57,9 +57,21 @@ that finish is required.
 ## BOM/CPL Handoff
 
 - BOM and CPL are intentionally not generated in this repository state.
+- KiCad `MPN`, `Manufacturer`, and `LCSC` fields are populated for seven
+  non-generic/order-critical lines: D1, J1, J2, Q1, U1, U3, and U4.
+- The exact ESP32-S3 module variant is still intentionally unset. Choose the
+  actual flash/PSRAM variant, such as an N8R8 or N16R8 orderable module, before
+  filling U2.
+- Passives, LEDs, switches, and the 32.768 kHz crystal still need exact
+  JLCPCB/LCSC choices for value, tolerance, voltage rating, dielectric, color,
+  height, actuator, and load-capacitance details.
 - Before ordering assembly, fill exact LCSC part numbers and verify all part
   rotations in the JLCPCB preview, especially USB-C, SOT-23/SOT-23-5, SOIC-8,
   LEDs, and diodes.
+- U3 BNO085 has a BOM note because the LCSC page showed it out of stock on
+  2026-07-13. Verify JLCPCB availability or pre-order status before PCBA.
+- J1 is a through-hole battery header. Confirm Standard PCBA support for that
+  line or plan to hand-solder/consign it.
 - The current design does not include a USB ESD/EMC filter near J2. This does
   not fail KiCad DRC, but it is still a robustness/EMC tradeoff for production.
 

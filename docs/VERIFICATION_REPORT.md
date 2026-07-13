@@ -1,7 +1,8 @@
 # Verification Report
 
 Last checked: 2026-07-13  
-Design files checked: `cd2680e`
+Design files checked: current working tree after `f988328` plus BOM metadata
+updates.
 
 This report is a current-state review, not a blanket guarantee. The board passes
 KiCad ERC/DRC, and the main power, USB boot, reset/boot button, and BNO085 mode
@@ -23,7 +24,9 @@ completed.
 - Thermal analyzer at 40 C ambient: 0 findings, score 100/100.
 - Gerber/drill export and Gerber analyzer: 3 warnings.
 
-Generated outputs are under `analysis/review_20260713/cd2680e/`.
+The full geometry/signal review outputs are under
+`analysis/review_20260713/cd2680e/`. The later BOM metadata/parity refresh is
+under `analysis/review_20260713/mpn_lcsc_fields/`.
 
 ## Critical Bring-Up Checks
 
@@ -128,16 +131,19 @@ Relevant JLCPCB references:
 
 ## Candidate JLCPCB/LCSC Matches
 
-These are search results for known, non-generic parts. They are not a generated
-BOM/CPL and should still be verified in the JLCPCB upload and placement preview.
+These are search results for known, non-generic parts. Matching `MPN`,
+`Manufacturer`, and `LCSC` fields have been added to the schematic and PCB
+footprint properties for the seven rows below. This is not a generated BOM/CPL,
+and the matches must still be verified in the JLCPCB upload and placement
+preview.
 
 | Ref | Current value | Candidate part | JLCPCB/LCSC # | Notes |
 | --- | --- | --- | --- | --- |
 | U3 | BNO085 | CEVA BNO085 | C5189642 | JLCPCB lists this as Extended, SMT Assembly, Standard Only, MSL 1, X-ray required. LCSC currently reports the same part as out of stock. Pre-order/availability must be checked before assembly. |
 | U1 | TP4056-42-ESOP8 | TOPPOWER TP4056-42-ESOP8 | C16581 | JLCPCB lists ESOP-8, SMT Assembly, Economic and Standard, MSL 3. |
 | J2 | USB_C_Receptacle_USB2.0_16P | TYPE-C-31-M-12 | C165948 | JLCPCB lists 16P right-angle Type-C, SMT Assembly, Economic and Standard, MSL 1. |
-| Q1 | AO3401A | AO3401A-compatible P-channel MOSFET | C347476 | JLCPCB listing is UMW AO3401A, SOT-23, P-channel. Verify manufacturer/pinout/electrical equivalence against the intended AO3401A. |
-| U4 | XC6220B331MR | Torex XC6220B331MR-G | C86534 | JLCPCB lists the Torex `-G` variant. Verify suffix/temperature/package before entering this in BOM. |
+| Q1 | AO3401A | Alpha & Omega Semicon AO3401A | C15127 | JLCPCB lists SOT-23, P-channel, Economic and Standard PCBA. This matches the existing AOS datasheet better than generic AO3401A alternates. |
+| U4 | XC6220B331MR | Torex XC6220B331MR-G | C86534 | JLCPCB/LCSC lists the Torex `-G` variant in SOT-25/SOT-23-5 style packaging. The schematic value remains `XC6220B331MR`; the BOM MPN uses the orderable suffix. |
 | D1 | BAT760 | DIODES BAT760-7 | C124187 | LCSC lists SOD-323, 30 V, 1 A. Verify package and polarity against the footprint. |
 | J1 | 530480210 | Molex 530480210 | C505099 | LCSC lists the 2-pin right-angle PicoBlade header. Confirm JLCPCB PCBA support or plan manual/consigned assembly. |
 | U2 | ESP32-S3-WROOM-1 | Not fixed yet | - | Search results include specific flash/PSRAM variants such as `ESP32-S3-WROOM-1-N16R8`; the current schematic value does not specify the exact module variant, so do not auto-fill it. |
@@ -150,7 +156,7 @@ height, color/brightness, actuator, and load-capacitance details.
 
 | Item | Severity | Status |
 | --- | --- | --- |
-| BOM/LCSC/MPN coverage | Blocker for assembled order | Current schematic has 0/24 unique BOM parts with analyzer-recognized MPN fields populated. Candidate matches above reduce search work, but the user-owned BOM/CPL step must fill and verify exact JLCPCB/LCSC parts. |
+| BOM/LCSC/MPN coverage | Blocker for assembled order | Current schematic has 7/24 unique BOM lines with analyzer-recognized MPN and LCSC fields populated: D1, J1, J2, Q1, U1, U3, U4. The remaining 17 lines, mostly passives/LEDs/switches/crystal and the exact ESP32-S3 module variant, still need final JLCPCB/LCSC selections before assembled ordering. |
 | CPL rotation preview | Blocker for assembled order | Must be checked in JLCPCB preview, especially USB-C, BNO085 LGA, SOT-23, SOT-23-5, SOIC-8, diodes, and LEDs. |
 | Standard PCBA handling | Order setup | Board is smaller than Standard PCBA handling size by itself. Use JLCPCB panel/rails; do not alter outline. |
 | Via-in-pad / solder wicking | Order setup | Analyzer reports an untented via at/near D2 pad 1. Use JLCPCB via covering/filled-and-capped option where needed, or inspect the assembly preview carefully. |
@@ -159,14 +165,15 @@ height, color/brightness, actuator, and load-capacitance details.
 | EMC score | Robustness risk | EMC analyzer score is 31/100, mostly from no USB filtering, 2-layer adjacent signal layers, USB layer changes, and edge-near sensitive nets. |
 | Physical bring-up | Not tested | No measurement evidence yet. Check USB VBUS, `VSYS`, `+3.3V`, `ESP_EN`, and USB D+/D- continuity on a real board. |
 | SPICE simulation | Not run | No SPICE simulator was installed in this environment. |
-| Lifecycle audit | Not meaningful yet | MPN/LCSC fields are not populated, so lifecycle/stock audit cannot prove availability. |
+| Lifecycle audit | Partial only | MPN/LCSC fields are now populated for 7/24 unique BOM lines. Full lifecycle/stock audit still cannot prove assembled-order readiness until all remaining BOM lines are populated. |
 
 ## Analyzer False Positives or Non-Blockers
 
 - Remaining all-check DRC warnings are `lib_footprint_mismatch`. These mean the
   board-embedded footprint copies differ from the currently installed KiCad
   library versions. They are not clearance, unconnected-net, or schematic-parity
-  failures.
+  failures. Do not use "Update Footprints from Library" merely to clear these
+  warnings unless the resulting pad/courtyard/connector geometry is reviewed.
 - Schematic analyzer `RS-001` warnings on `+5V` and `VSYS` are not KiCad ERC
   failures. Raw ERC testing shows those rails already have PWR_FLAG source
   declarations; duplicating them causes an ERC error.
