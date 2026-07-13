@@ -65,6 +65,10 @@ and battery-powered `VSYS`. A board that does not power up should be checked
 physically at these points in order: USB VBUS, `VSYS`, U4 VOUT `+3.3V`,
 ESP32 `EN`.
 
+KiCad ERC also confirms the power source declarations are valid. The existing
+PWR_FLAG symbols on the `+5V` and `VSYS` rails are sufficient; adding duplicate
+PWR_FLAGs on those same rails creates a power-output-to-power-output ERC error.
+
 Relevant component references:
 
 - XC6220 datasheet:
@@ -143,6 +147,9 @@ Relevant JLCPCB references:
   board-embedded footprint copies differ from the currently installed KiCad
   library versions. They are not clearance, unconnected-net, or schematic-parity
   failures.
+- Schematic analyzer `RS-001` warnings on `+5V` and `VSYS` are not KiCad ERC
+  failures. Raw ERC testing shows those rails already have PWR_FLAG source
+  declarations; duplicating them causes an ERC error.
 - `PM-002` on J1/J2 edge distance is expected for edge/overhanging connectors.
 - `FD-001` no fiducials is a JLCPCB assembly setup issue, not an electrical
   failure. Use panel/rail fiducials if needed.
