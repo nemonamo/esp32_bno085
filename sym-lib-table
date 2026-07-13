@@ -1,0 +1,24 @@
+(sym_lib_table
+	(version 7)
+	(lib
+		(name "530480210")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/530480210.kicad_sym")
+		(options "")
+		(descr "Project-local Molex 530480210 connector symbol")
+	)
+	(lib
+		(name "BNO085")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/BNO085.kicad_sym")
+		(options "")
+		(descr "Project-local BNO085 symbol")
+	)
+	(lib
+		(name "USB_C_HRO")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/USB_C_HRO.kicad_sym")
+		(options "")
+		(descr "Project-local USB-C symbol matching the HRO TYPE-C-31-M-12 shield pads")
+	)
+)
